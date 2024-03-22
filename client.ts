@@ -6,10 +6,11 @@ const ws = client.ws.$ws(0);
 
 ws.addEventListener('open', () => {
   setInterval(() => {
-    ws.send(new Date().toString())
+    ws.send('ping')
   }, 1000)
 })
 
-ws.addEventListener('Hello from server', () => {
-  console.log('pinged from server')
+ws.addEventListener('message', (e: MessageEvent) => {
+  console.log('message from server:', e.data)
 })
+

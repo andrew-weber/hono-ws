@@ -8,8 +8,8 @@ const app = new Hono()
 app.get('/ws', upgradeWebSocket(() => {
   return {
     onMessage(event, ws) {
-      console.log(`Message from client: ${JSON.stringify(event)}`)
-      ws.send('Hello from server')
+      console.log(`message from client: ${event.data}`)
+      ws.send('pong')
     },
     onClose: () => {
       console.log("Connection Closed")
